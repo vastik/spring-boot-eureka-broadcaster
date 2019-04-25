@@ -1,0 +1,37 @@
+buildscript {
+    ext["springCloudVersion"] = 'Edgware.SR5'
+}
+
+plugins {
+    id "java"
+    id 'net.researchgate.release' version '2.6.0'
+    id "org.springframework.boot" version "1.5.15.RELEASE"
+}
+
+group = 'com.github.vastik'
+sourceCompatibility = 1.8
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+dependencies {
+    implementation "org.springframework.boot:spring-boot-starter-websocket"
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    implementation 'org.apache.logging.log4j:log4j-core:2.11.1'
+}
+
+release {
+    preCommitText = ''
+    preTagCommitMessage = 'UPD: '
+    tagCommitMessage = 'UPD: '
+    newVersionCommitMessage = 'UPD: '
+}
