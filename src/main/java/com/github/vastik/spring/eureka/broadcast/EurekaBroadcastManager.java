@@ -59,7 +59,7 @@ public class EurekaBroadcastManager {
         restTemplate.setRequestFactory(requestFactory);
     }
 
-    @Async
+    @Async("eurekaTaskExecutor")
     public void broadcast(EurekaBroadcastMessage message) {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type", MediaType.APPLICATION_JSON_VALUE);
